@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { getUserById } from 'redux/users/usersOperations';
+import { deleteUser } from 'redux/users/usersOperations';
 import { selectCurrent } from 'redux/users/usersSelectors';
 
 export const UserDetailsPage = () => {
@@ -15,8 +16,12 @@ export const UserDetailsPage = () => {
   }, [dispatch, id]);
 
   const user = useSelector(selectCurrent);
+  const navigate = useNavigate();
 
-  console.log(user);
+  const onDeleteUser = id => {
+    dispatch(deleteUser(id));
+    navigate('/users');
+  };
 
   return (
     <>
@@ -27,6 +32,9 @@ export const UserDetailsPage = () => {
           <p>{user.phone}</p>
           <p>{user.email}</p>
           <p>{user.address}</p>
+          <button onClick={() => onDeleteUser(id)} type="button">
+            Delete
+          </button>
         </div>
       )}
     </>

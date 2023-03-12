@@ -4,6 +4,7 @@ import { Layout } from 'components/Layout/Layout';
 import { HomePage } from 'components/pages/HomePage';
 import { UsersPage } from 'components/pages/UsersPage';
 import { UserDetailsPage } from 'components/pages/UserDetailsPage';
+import { AddUserPage } from 'components/pages/AddUserPage';
 
 export const App = () => {
   return (
@@ -12,6 +13,7 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="users/:id" element={<UserDetailsPage />} />
+        <Route path="users/add" element={<AddUserPage />} />
       </Route>
     </Routes>
   );
